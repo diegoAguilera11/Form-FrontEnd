@@ -10,7 +10,8 @@ const Tab = createBottomTabNavigator();
 
 export const BottomNavigator = () => {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator
+        >
             <Tab.Screen
                 name="FormularioScreen"
                 options={{

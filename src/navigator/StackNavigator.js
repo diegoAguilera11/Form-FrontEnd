@@ -7,6 +7,7 @@ import { BottomNavigator } from './BottomNavigator';
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import LoadingScreen from '../Screens/LoadingScreen';
+import { MenuLateral } from './MenuLateral';
 
 
 
@@ -21,7 +22,19 @@ export const StackNavigator = () => {
   }
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          // Quitar linea separacion header y body
+          elevation: 0, // Android 
+          shadowColor: 'transparent' // Ios
+        },
+        cardStyle: {
+          backgroundColor: 'white'
+        },
+        headerShown: false
+      }}
+    >
       {
         (status !== 'authenticated')
           ? (
@@ -31,7 +44,9 @@ export const StackNavigator = () => {
             </>
           )
           : (
-            <Stack.Screen name='BottomNavigator' options={{ title: 'Bottom Tabs' }} component={BottomNavigator} />
+            <>
+              <Stack.Screen name='MenuLateral' options={{ title: 'ejemplo0' }} component={MenuLateral} />
+            </>
           )
       }
     </Stack.Navigator>

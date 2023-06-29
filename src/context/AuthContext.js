@@ -33,7 +33,8 @@ export const AuthProvider = ({ children }) => {
         }
 
         // 2.Hay token
-        const response = await formApi.get('/token/validate', {
+        try {
+            const response = await formApi.get('/token/validate', {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -50,6 +51,9 @@ export const AuthProvider = ({ children }) => {
                 user: response.data.user,
             },
         });
+        } catch (error) {
+            // console.log(error);
+        }
 
     };
 
@@ -61,13 +65,14 @@ export const AuthProvider = ({ children }) => {
                 payload: {
                     token: response.data.token,
                     user: response.data.user,
-                }
+                },
             });
+            console.log(response.data);
             // ALmacenamos el token en el async storage
             await AsyncStorage.setItem('token', response.data.token);
 
         } catch (error) {
-            console.log(error);
+            // console.log(error);
             console.log(error.response.data.errors);
             dispatch({
                 type: 'addError',

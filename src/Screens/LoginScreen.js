@@ -32,7 +32,7 @@ const LoginScreen = ({ navigation }) => {
         Keyboard.dismiss();
 
         signIn({ email, password });
-    }
+    };
 
 
     return (
